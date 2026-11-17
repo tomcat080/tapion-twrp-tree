@@ -6,30 +6,7 @@
 #
 
 LOCAL_PATH := device/bq/tapion
-# A/B
-AB_OTA_POSTINSTALL_CONFIG += \
-    RUN_POSTINSTALL_system=true \
-    POSTINSTALL_PATH_system=system/bin/otapreopt_script \
-    FILESYSTEM_TYPE_system=ext4 \
-    POSTINSTALL_OPTIONAL_system=true
 
-# Boot control HAL
-PRODUCT_PACKAGES += \
-    android.hardware.boot@1.0-impl \
-    android.hardware.boot@1.0-service
-
-PRODUCT_PACKAGES += \
-    bootctrl.sdm660
-
-PRODUCT_STATIC_BOOT_CONTROL_HAL := \
-    bootctrl.sdm660 \
-    libgptutils \
-    libz \
-    libcutils
-
-PRODUCT_PACKAGES += \
-    otapreopt_script \
-    cppreopts.sh \
-    update_engine \
-    update_verifier \
-    update_engine_sideload
+# A/B OTA / boot-control packages were removed on purpose:
+# the omni minimal manifest ships no bootctrl.<board> source, and a TWRP
+# recovery image does not require update_engine / bootctrl / otapreopt.
